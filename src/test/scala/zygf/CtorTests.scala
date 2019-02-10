@@ -45,6 +45,9 @@ class CtorTests extends org.scalatest.FunSuite
   
   test("Ctor.get") {
     assert(Ctor.get[Int => String => Args1and1].make(0)("").isInstanceOf[Args1and1])
+    
+    implicit val s: String = "foo"
+    assert(Ctor.get[Int => Args1and1].make(0).isInstanceOf[Args1and1])
   }
   
   test("Ctor.get is transitive") {

@@ -3,7 +3,7 @@
 This is a tiny macro library for Scala that lets your generic code gain access
 to constructors for your type arguments.
 
-Supported Scala versions: 2.11, 2.12, 2.13.
+Supported Scala versions: `2.11`, `2.12`, `2.13`.
 
 == Usage
 
@@ -45,7 +45,7 @@ ctor.make(42)("foo")
 ----
 
 [NOTE]
-Implicit parameter lists are converted to regular parameter lists, as there's no other way
+Implicit parameter lists need to be converted to regular parameter lists, as there's no other way
 to represent them in a function signature.
 
 [source,scala]
@@ -54,4 +54,22 @@ class Foo(val i: Int)(implicit val s: String)
 
 Ctor.get[Int => String => Foo] // works
 Ctor.get[Int => Foo] // doesn't work
+----
+
+If you omitted the implicit parameter list, the compiler would look for implicit parameters
+at the constructor function's creation site and not the call site.
+
+[source,scala]
+----
+class Foo(val i: Int)(implicit val s: String)
+
+val ctor = {
+  implicit val s: String = "foo"
+  Ctor.get[Int => Foo] // works
+}
+
+{
+  implicit val s: String = "bar" // ignored
+  ctor.make(42) == Foo(42)("foo")
+}
 ----
