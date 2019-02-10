@@ -1,0 +1,57 @@
+= zygf.ctor
+
+This is a tiny macro library for Scala that lets your generic code gain access
+to constructors for your type arguments.
+
+Supported Scala versions: 2.11, 2.12, 2.13.
+
+== Usage
+
+[source,scala]
+----
+import zygf.ctor.Ctor
+----
+
+Obtaining a function that calls the constructor matching the given signature.
+You can access the function via the member `make` of the returned object.
+
+[source,scala]
+----
+def foo[T](implicit ctor: Ctor[String => T]) = ctor.make("foo")
+----
+
+A companion object's `apply` method qualifies as a constructor too:
+
+[source,scala]
+----
+trait Foo
+
+object Foo {
+  def apply(s: String) = ???
+}
+
+val ctor = Ctor.get[String => Foo]
+----
+
+Multiple parameter lists are supported as curried functions:
+
+[source,scala]
+----
+class Foo(val i: Int)(val s: String)
+
+val ctor = Ctor.get[Int => String => Foo]
+
+ctor.make(42)("foo")
+----
+
+[NOTE]
+Implicit parameter lists are converted to regular parameter lists, as there's no other way
+to represent them in a function signature.
+
+[source,scala]
+----
+class Foo(val i: Int)(implicit val s: String)
+
+Ctor.get[Int => String => Foo] // works
+Ctor.get[Int => Foo] // doesn't work
+----
