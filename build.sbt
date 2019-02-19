@@ -2,6 +2,14 @@ name := "ctor"
 
 version := "0.1"
 
+organization := "net.zygfryd"
+organizationName := "zygfryd's projects"
+organizationHomepage := Some(url("https://zygfryd.net/"))
+
+description := "A tiny macro library for Scala that lets your generic code gain access to constructors."
+
+licenses := List("CC0 1.0" -> new URL("https://creativecommons.org/publicdomain/zero/1.0/legalcode"))
+
 lazy val scala211 = "2.11.12"
 lazy val scala212 = "2.12.8"
 lazy val scala213 = "2.13.0-M5"

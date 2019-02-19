@@ -7,6 +7,16 @@ Supported Scala versions: `2.11`, `2.12`, `2.13`.
 
 == Usage
 
+[horizontal]
+Artifact:: 
++
+[source,scala]
+----
+"net.zygfryd" %% "ctor" % "0.1"
+----
+
+Import::
++
 [source,scala]
 ----
 import zygf.ctor.Ctor
