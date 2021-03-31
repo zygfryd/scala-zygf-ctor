@@ -32,7 +32,7 @@ object Ctor
         case TypeRef(_, sym, args) if sym.fullName.startsWith("scala.Function") =>
           val argTypes = args.toVector
           
-          val namesAndTypes = argTypes.dropRight(1).map { t => (t, TermName(c.freshName)) }.toList
+          val namesAndTypes = argTypes.dropRight(1).map { t => (t, TermName(c.freshName())) }.toList
           
           val formal = namesAndTypes.map {
             case (t, name) =>

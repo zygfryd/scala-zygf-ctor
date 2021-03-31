@@ -23,10 +23,10 @@
           <option value="strix" />
         </array>
       </option>
-      <option name="DO_NOT_ALIGN_BLOCK_EXPR_PARAMS" value="true" />
       <option name="SPACES_IN_ONE_LINE_BLOCKS" value="true" />
       <option name="SPACES_AROUND_AT_IN_PATTERNS" value="true" />
       <option name="ALIGN_TYPES_IN_MULTILINE_DECLARATIONS" value="true" />
+      <option name="MULTILINE_STRING_CLOSING_QUOTES_ON_NEW_LINE" value="true" />
       <option name="TYPE_ANNOTATION_PUBLIC_MEMBER" value="false" />
       <option name="TYPE_ANNOTATION_PROTECTED_MEMBER" value="false" />
     </ScalaCodeStyleSettings>
